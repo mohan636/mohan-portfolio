@@ -150,9 +150,6 @@ function App() {
               gap: '1.25rem',
             }}
           >
-            <span>Retro-Modern Editorial</span>
-            <span>•</span>
-            <span>MERN Stack</span>
           </div>
         </div>
       </footer>

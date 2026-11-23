@@ -15,97 +15,88 @@ export default function Contact() {
           </span>
           <h2 className="section-title">Get In Touch</h2>
           <p className="section-subtitle">
-            Interested in collaborating or discussing full-stack opportunities? Feel free to connect or view my profiles.
+            Interested in collaborating or discussing full-stack opportunities? Reach out directly or explore my work.
           </p>
         </div>
 
         <motion.div
           className="contact-card"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
         >
+          {/* Availability Message as Primary Heading */}
           <h3 className="contact-headline">
             Available for MERN Stack Developer roles & engineering challenges.
           </h3>
+
           <p className="contact-desc">
-            Feel free to contact me directly via email or phone, explore my source code on GitHub, or connect on LinkedIn.
+            Feel free to connect directly via email or phone, or explore my projects on GitHub and professional network on LinkedIn.
           </p>
 
-          {/* Recruiter & Professional Contact Details Grid */}
-          <div className="contact-info-grid" aria-label="Direct Contact Channels">
-            {/* Direct Email */}
+          {/* Compact Professional Contact Details */}
+          <div className="contact-compact-bar" aria-label="Direct Contact Channels">
             <a
               href={`mailto:${CONTACT_DATA.email}`}
-              className="contact-info-item"
+              className="contact-compact-badge"
               title={`Send email to ${CONTACT_DATA.email}`}
             >
-              <div className="contact-info-icon-box" aria-hidden="true">
-                <Mail size={18} />
-              </div>
-              <div className="contact-info-text">
-                <span className="contact-info-label">Email Address</span>
-                <span className="contact-info-link">{CONTACT_DATA.email}</span>
-              </div>
+              <Mail size={15} color="var(--accent-rust)" aria-hidden="true" />
+              <span className="compact-badge-label">EMAIL:</span>
+              <span className="compact-badge-val">{CONTACT_DATA.email}</span>
             </a>
 
-            {/* Direct Phone */}
+            <span className="contact-compact-divider" aria-hidden="true">•</span>
+
             <a
               href={`tel:${CONTACT_DATA.phoneRaw}`}
-              className="contact-info-item"
+              className="contact-compact-badge"
               title={`Call ${CONTACT_DATA.phone}`}
             >
-              <div className="contact-info-icon-box" aria-hidden="true">
-                <Phone size={18} />
-              </div>
-              <div className="contact-info-text">
-                <span className="contact-info-label">Direct Phone</span>
-                <span className="contact-info-link">{CONTACT_DATA.phone}</span>
-              </div>
+              <Phone size={15} color="var(--accent-rust)" aria-hidden="true" />
+              <span className="compact-badge-label">PHONE:</span>
+              <span className="compact-badge-val">{CONTACT_DATA.phone}</span>
             </a>
           </div>
 
-          {/* Action Buttons */}
-          <div className="contact-actions">
-            {/* GitHub Profile */}
+          {/* Three Consistent Action Buttons */}
+          <div className="contact-actions-bar">
+            {/* Primary Action: Download Resume */}
+            <a
+              href={CONTACT_DATA.resumeUrl}
+              download="K_Mohan_Reddy_Resume.pdf"
+              className="btn-primary"
+              title="Download Resume PDF"
+            >
+              <Download size={16} />
+              <span>Download Resume</span>
+            </a>
+
+            {/* Secondary: GitHub Profile */}
             <a
               href={CONTACT_DATA.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-primary"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.65rem' }}
+              className="btn-secondary"
               title="Open GitHub Profile in new tab"
             >
-              <GithubIcon size={18} />
+              <GithubIcon size={16} />
               <span>GitHub Profile</span>
-              <ArrowUpRight size={15} />
+              <ArrowUpRight size={14} />
             </a>
 
-            {/* LinkedIn Profile */}
+            {/* Secondary: LinkedIn Profile */}
             <a
               href={CONTACT_DATA.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-secondary"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.65rem' }}
               title="Open LinkedIn Profile in new tab"
             >
-              <LinkedinIcon size={18} />
+              <LinkedinIcon size={16} />
               <span>LinkedIn</span>
-              <ArrowUpRight size={15} />
-            </a>
-
-            {/* Download Resume */}
-            <a
-              href={CONTACT_DATA.resumeUrl}
-              download="K_Mohan_Reddy_Resume.pdf"
-              className="btn-secondary"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.65rem' }}
-              title="Download Resume PDF"
-            >
-              <Download size={18} />
-              <span>Download Resume</span>
+              <ArrowUpRight size={14} />
             </a>
           </div>
         </motion.div>

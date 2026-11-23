@@ -34,19 +34,23 @@ export default function Experience() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
             >
+              {/* Perfectly Centered Timeline Node Dot */}
+              <span className="experience-timeline-dot" aria-hidden="true" />
+
               <div className="experience-header-grid">
-                <div>
+                <div className="experience-title-group">
                   <h3 className="experience-company-title">{item.company}</h3>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginTop: '0.25rem', flexWrap: 'wrap' }}>
+                  <div className="experience-role-subline">
                     <span className="experience-role-pill">{item.position}</span>
-                    <span className="badge-mono" style={{ fontSize: '0.7rem', padding: '0.2rem 0.6rem' }}>
+                    <span className="badge-mono experience-status-badge">
                       <span className="pulse-dot" style={{ width: '6px', height: '6px' }} aria-hidden="true" />
                       Active Role
                     </span>
                   </div>
                 </div>
+
                 <div className="experience-date-badge">
-                  <Calendar size={13} color="var(--accent-rust)" />
+                  <Calendar size={13} color="var(--accent-rust)" aria-hidden="true" />
                   <span>{item.duration}</span>
                 </div>
               </div>
@@ -57,7 +61,7 @@ export default function Experience() {
                     {EXPERIENCE_DOMAIN_TAGS[idx] && (
                       <span className="bullet-domain-tag">{EXPERIENCE_DOMAIN_TAGS[idx]}</span>
                     )}
-                    <span>{resp}</span>
+                    <span className="experience-bullet-text">{resp}</span>
                   </li>
                 ))}
               </ul>

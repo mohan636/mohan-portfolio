@@ -124,6 +124,7 @@
 
 /* Terminal Body */
 .terminal-screen {
+  position: relative;
   padding: 1.5rem 1.25rem;
   min-height: 340px;
   max-height: 480px;
@@ -238,6 +239,8 @@
 .output-link {
   color: #C56F49;
   text-decoration: underline;
+  word-break: break-all;
+  overflow-wrap: anywhere;
   transition: color var(--transition-fast);
 }
 

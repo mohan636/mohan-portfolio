@@ -1,13 +1,39 @@
-/* Responsive styles & Media queries across all viewports */
+/* ==========================================================================
+   Master Responsive Design System — Retro-Modern Editorial
+   Covers viewports from 320px up to 1920px+ seamlessly
+   ========================================================================== */
 
-/* Large desktop (1366px - 1440px+) */
+/* --------------------------------------------------------------------------
+   1. Ultra-Wide & Large Desktop (1440px - 1920px+)
+   -------------------------------------------------------------------------- */
 @media (min-width: 1440px) {
   :root {
     --container-max: 1260px;
   }
 }
 
-/* Small laptops & tablets landscape (<= 1024px) */
+@media (min-width: 1920px) {
+  :root {
+    --container-max: 1360px;
+  }
+
+  .hero-title {
+    font-size: 4.25rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   2. Standard Laptop & Desktop (1025px - 1366px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1280px) {
+  .hero-grid {
+    gap: 2.75rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3. Small Laptops & Tablet Landscape (<= 1024px)
+   -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   :root {
     --header-height: 68px;
@@ -18,25 +44,60 @@
     padding-right: 1.75rem;
   }
 
+  /* Hero: Stack with Introduction first, profile card second */
   .hero-grid {
     grid-template-columns: 1fr !important;
     gap: 2.5rem !important;
   }
 
-  /* Recruiter UX: On mobile/tablet, keep hero introduction at the top so recruiters see name & title first */
-  .hero-visual {
+  .hero-content {
     order: 1 !important;
-    max-width: 460px;
-    margin: 1rem auto 0;
+  }
+
+  .hero-visual {
+    order: 2 !important;
+    max-width: 440px;
+    margin: 0.5rem auto 0;
     width: 100%;
   }
 
+  /* Skills: 2 columns on tablet landscape */
   .skills-grid {
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1.25rem !important;
+  }
+
+  .desktop-nav-links {
+    gap: 1.15rem !important;
+  }
+
+  .nav-link {
+    font-size: 0.85rem !important;
   }
 }
 
-/* Tablet portrait & below (<= 768px) */
+/* --------------------------------------------------------------------------
+   4. Mid Tablets & Compact Split Grids (<= 900px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .about-grid,
+  .education-cert-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+
+  .about-specs {
+    margin-top: 0.5rem;
+  }
+
+  .cert-card {
+    height: auto !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   5. Tablet Portrait (<= 768px)
+   -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   :root {
     --header-height: 64px;
@@ -47,7 +108,7 @@
     padding-right: 1.25rem;
   }
 
-  /* Nav responsiveness */
+  /* Switch navigation to clean mobile hamburger */
   .desktop-nav-links {
     display: none !important;
   }
@@ -56,36 +117,7 @@
     display: inline-flex !important;
   }
 
-  /* Hero adjustments */
-  .hero-title {
-    font-size: 2.85rem !important;
-    line-height: 1.1 !important;
-  }
-
-  .hero-role-title {
-    font-size: 1.35rem !important;
-  }
-
-  .hero-cta-group {
-    flex-direction: column;
-    align-items: stretch !important;
-  }
-
-  .hero-cta-group .btn-primary,
-  .hero-cta-group .btn-secondary {
-    justify-content: center;
-    width: 100%;
-  }
-
-  .editorial-card-wrapper {
-    transform: none !important;
-  }
-
-  /* Section headers */
-  .section-title {
-    font-size: 2.25rem !important;
-  }
-
+  /* Section Spacing & Headers */
   .section-wrapper {
     padding: 3.75rem 0 !important;
   }
@@ -93,142 +125,456 @@
   .terminal-section {
     padding: 3.75rem 0 !important;
   }
+
+  .section-title {
+    font-size: 2.15rem !important;
+  }
+
+  .section-header {
+    margin-bottom: 2rem !important;
+  }
+
+  /* Hero Adjustments */
+  .hero-section {
+    padding: 3.5rem 0 2.5rem !important;
+  }
+
+  .hero-title {
+    font-size: 2.65rem !important;
+  }
+
+  .hero-role-title {
+    font-size: 1.35rem !important;
+  }
+
+  .hero-description {
+    font-size: 1.05rem !important;
+    line-height: 1.7 !important;
+  }
+
+  /* Projects Section */
+  .project-header-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.85rem !important;
+  }
+
+  .project-actions {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 0.65rem !important;
+  }
+
+  /* Experience Timeline */
+  .experience-timeline {
+    padding-left: 1.5rem !important;
+    margin-left: 0.5rem !important;
+  }
+
+  .experience-timeline-dot {
+    left: calc(-1.5rem - 7px) !important;
+  }
+
+  .experience-header-grid {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.5rem !important;
+  }
+
+  .experience-card {
+    padding: 1.5rem 1.65rem !important;
+  }
+
+  .experience-company-title {
+    font-size: 1.35rem !important;
+  }
+
+  /* About Card */
+  .about-card {
+    padding: 1.65rem !important;
+  }
 }
 
-/* Standard Mobile (<= 480px - covers 430px, 390px) */
+/* --------------------------------------------------------------------------
+   6. Phablets & Large Phones (<= 640px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  /* Skills: Switch to clean single column */
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+  }
+
+  /* Hero CTAs: Full width stack */
+  .hero-cta-group {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+    width: 100% !important;
+  }
+
+  .hero-cta-group .btn-primary,
+  .hero-cta-group .btn-secondary {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 48px;
+    padding: 0.75rem 1.25rem !important;
+  }
+
+  /* Contact Action Buttons: Full width stack */
+  .contact-actions-bar {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+
+  .contact-actions-bar .btn-primary,
+  .contact-actions-bar .btn-secondary {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 48px;
+  }
+
+  /* Contact Compact Info Bar */
+  .contact-compact-bar {
+    flex-direction: column !important;
+    width: 100% !important;
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+    padding: 0.75rem 1rem !important;
+  }
+
+  .contact-compact-divider {
+    display: none !important;
+  }
+
+  .contact-compact-badge {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+
+  .compact-badge-val {
+    word-break: break-all;
+  }
+
+  /* Terminal hint stacking */
+  .terminal-footer-hint {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.35rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   7. Standard Mobile (<= 480px - iPhone 14/15/Pro, Galaxy S21/S22/S23)
+   -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
+  .container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Section Titles */
+  .section-title {
+    font-size: 1.95rem !important;
+  }
+
+  .section-subtitle {
+    font-size: 0.95rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Hero Fluid Typography */
   .hero-title {
-    font-size: 2.35rem !important;
+    font-size: 2.25rem !important;
   }
 
   .hero-role-title {
     font-size: 1.15rem !important;
   }
 
+  .hero-description {
+    font-size: 0.98rem !important;
+    line-height: 1.65 !important;
+  }
+
   .hero-tech-pills {
-    gap: 0.4rem !important;
+    gap: 0.35rem !important;
   }
 
   .tech-pill {
     font-size: 0.72rem !important;
-    padding: 0.25rem 0.55rem !important;
+    padding: 0.22rem 0.55rem !important;
+  }
+
+  .editorial-card-wrapper {
+    padding: 1.25rem 1rem !important;
+    max-width: 100% !important;
   }
 
   .editorial-stamp {
     font-size: 0.65rem !important;
   }
 
-  /* Skills grid single column on small screens */
-  .skills-grid {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Project actions full width */
-  .project-actions {
-    width: 100%;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-
-  .btn-link-action {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .project-header-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  /* Terminal buttons touch-friendly */
-  .terminal-suggestions-bar {
-    padding: 0.65rem 0.85rem !important;
-    gap: 0.45rem !important;
-  }
-
-  .suggestion-btn {
-    font-size: 0.72rem !important;
-    padding: 0.3rem 0.55rem !important;
-  }
-
-  /* Contact info grid on mobile */
-  .contact-info-grid {
-    flex-direction: column !important;
-    gap: 0.75rem !important;
-  }
-
-  .contact-info-item {
-    width: 100% !important;
-    justify-content: flex-start !important;
-  }
-
-  /* Back to top position */
-  .back-to-top-btn {
-    bottom: 1.5rem !important;
-    right: 1.25rem !important;
-    width: 42px !important;
-    height: 42px !important;
-  }
-}
-
-/* Small mobile (<= 360px) */
-@media (max-width: 360px) {
-  .container {
-    padding-left: 0.85rem !important;
-    padding-right: 0.85rem !important;
-  }
-
-  .hero-title {
-    font-size: 2rem !important;
-  }
-
-  .hero-role-title {
-    font-size: 1.05rem !important;
-  }
-
+  /* Cards Padding Optimization */
   .about-card,
   .project-card,
   .experience-card,
   .edu-card,
   .cert-card,
   .contact-card {
-    padding: 1.15rem 0.95rem !important;
+    padding: 1.35rem 1.15rem !important;
   }
 
+  /* Projects Section Buttons */
+  .project-actions {
+    flex-direction: column !important;
+    gap: 0.55rem !important;
+  }
+
+  .btn-link-action {
+    width: 100% !important;
+    justify-content: center !important;
+    min-height: 44px;
+  }
+
+  .project-title {
+    font-size: 1.4rem !important;
+  }
+
+  .project-bullet-item {
+    font-size: 0.9rem !important;
+    line-height: 1.55 !important;
+    gap: 0.5rem !important;
+  }
+
+  /* Experience Timeline */
+  .experience-timeline {
+    padding-left: 1.25rem !important;
+    margin-left: 0.25rem !important;
+  }
+
+  .experience-timeline-dot {
+    left: calc(-1.25rem - 7px) !important;
+  }
+
+  .experience-date-badge {
+    font-size: 0.75rem !important;
+    padding: 0.22rem 0.6rem !important;
+  }
+
+  /* Developer Terminal Mobile Layout */
   .terminal-window-header {
-    padding: 0.55rem 0.75rem !important;
+    padding: 0.6rem 0.85rem !important;
+  }
+
+  .terminal-window-title {
+    font-size: 0.74rem !important;
   }
 
   .terminal-window-status {
     display: none !important;
   }
 
+  .terminal-suggestions-bar {
+    padding: 0.55rem 0.75rem !important;
+    gap: 0.4rem !important;
+  }
+
+  .suggestion-btn {
+    font-size: 0.72rem !important;
+    padding: 0.25rem 0.5rem !important;
+    min-height: 32px;
+  }
+
   .terminal-screen {
-    padding: 0.85rem 0.65rem !important;
-    font-size: 0.8rem !important;
+    padding: 1rem 0.75rem !important;
+    font-size: 0.82rem !important;
+    min-height: 280px !important;
+    max-height: 420px !important;
   }
 
+  /* Contact Headline */
   .contact-headline {
-    font-size: 1.5rem !important;
+    font-size: 1.6rem !important;
   }
 
-  .contact-info-item {
-    padding: 0.6rem 0.75rem !important;
+  .contact-desc {
+    font-size: 0.92rem !important;
   }
 
-  .contact-info-link {
+  /* Minimal Footer */
+  .portfolio-footer {
+    padding: 0.95rem 0 !important;
+    margin-top: 2.75rem !important;
+  }
+
+  .footer-container {
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .footer-logo {
+    font-size: 1.15rem !important;
+  }
+
+  .footer-copy {
+    font-size: 0.75rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   8. Compact Mobile (<= 375px - iPhone SE / iPhone 12/13 Mini)
+   -------------------------------------------------------------------------- */
+@media (max-width: 375px) {
+  .hero-title {
+    font-size: 2.05rem !important;
+  }
+
+  .hero-role-title {
+    font-size: 1.1rem !important;
+  }
+
+  .section-title {
+    font-size: 1.85rem !important;
+  }
+
+  .about-spec-row {
+    flex-wrap: wrap !important;
+    gap: 0.25rem !important;
+  }
+
+  .about-spec-val {
+    text-align: left !important;
+  }
+
+  .edu-top-row,
+  .cert-header,
+  .cert-meta-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.35rem !important;
+  }
+
+  .footer-copy {
+    font-size: 0.72rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   9. Small Mobile (<= 320px - Galaxy Fold Front, Small Screens)
+   -------------------------------------------------------------------------- */
+@media (max-width: 320px) {
+  .container {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Monogram Brand */
+  .monogram-badge {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .monogram-text {
+    font-size: 1.05rem !important;
+  }
+
+  .brand-name {
+    font-size: 0.88rem !important;
+  }
+
+  .brand-label {
+    font-size: 0.58rem !important;
+  }
+
+  /* Hero Elements */
+  .hero-title {
+    font-size: 1.75rem !important;
+  }
+
+  .hero-role-title {
+    font-size: 1rem !important;
+  }
+
+  .hero-description {
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .hero-profile-pill {
+    font-size: 0.72rem !important;
+    padding: 0.2rem 0.5rem !important;
+  }
+
+  .card-insignia {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  .card-insignia span {
+    font-size: 1.35rem !important;
+  }
+
+  .card-dev-name {
+    font-size: 1rem !important;
+  }
+
+  /* Section Titles */
+  .section-title {
+    font-size: 1.65rem !important;
+  }
+
+  .section-category {
+    font-size: 0.7rem !important;
+  }
+
+  /* Card Paddings on 320px */
+  .about-card,
+  .project-card,
+  .experience-card,
+  .edu-card,
+  .cert-card,
+  .contact-card,
+  .editorial-card-wrapper {
+    padding: 1rem 0.75rem !important;
+  }
+
+  .about-text-lead {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+  }
+
+  .spec-item {
+    flex-wrap: wrap !important;
+  }
+
+  /* Terminal */
+  .terminal-screen {
+    padding: 0.75rem 0.5rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .terminal-input-field {
+    font-size: 0.78rem !important;
+  }
+
+  /* Contact */
+  .contact-headline {
+    font-size: 1.4rem !important;
+  }
+
+  .compact-badge-val {
     font-size: 0.8rem !important;
-    word-break: break-all;
   }
 
-  .contact-actions {
-    width: 100%;
-    flex-direction: column;
+  /* Footer */
+  .footer-logo {
+    font-size: 1rem !important;
   }
 
-  .contact-actions .btn-primary,
-  .contact-actions .btn-secondary {
-    width: 100%;
-    justify-content: center;
+  .footer-copy {
+    font-size: 0.68rem !important;
   }
 }

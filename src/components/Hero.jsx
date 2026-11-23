@@ -31,7 +31,6 @@ export default function Hero() {
             <h1 className="hero-title">{HERO_DATA.name}</h1>
             <div className="hero-role-wrapper">
               <span className="hero-role-title">{HERO_DATA.role}</span>
-              <div className="hero-role-divider" aria-hidden="true" />
             </div>
           </div>
 

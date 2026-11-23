@@ -28,19 +28,39 @@ export default function Terminal() {
   const [historyIndex, setHistoryIndex] = useState(-1);
 
   const inputRef = useRef(null);
-  const screenEndRef = useRef(null);
+  const screenRef = useRef(null);
+  const lastEntryRef = useRef(null);
 
-  // Auto scroll to bottom when history updates
+  // Smoothly scroll internal terminal container to the newly displayed output
   useEffect(() => {
-    if (screenEndRef.current) {
-      screenEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [history]);
+    // Only scroll if there is user-invoked history beyond the initial welcome
+    if (history.length <= 1) return;
 
-  // Focus input on clicking anywhere in terminal
-  const handleTerminalClick = () => {
-    if (inputRef.current) {
-      inputRef.current.focus();
+    const screenEl = screenRef.current;
+    const entryEl = lastEntryRef.current;
+
+    if (!screenEl || !entryEl) return;
+
+    // Use requestAnimationFrame to ensure the newly rendered entry is painted before scrolling
+    const frameId = requestAnimationFrame(() => {
+      // Smoothly scroll the INTERNAL terminal output container to the newly displayed output
+      // Note: The main webpage scrollbar is never touched, keeping the page viewport completely unchanged
+      const targetScroll = Math.max(0, entryEl.offsetTop - 8);
+
+      screenEl.scrollTo({
+        top: targetScroll,
+        behavior: shouldReduceMotion ? 'auto' : 'smooth',
+      });
+    });
+
+    return () => cancelAnimationFrame(frameId);
+  }, [history, shouldReduceMotion]);
+
+  // Focus input on clicking anywhere in terminal without jumping the webpage
+  const handleTerminalClick = (e) => {
+    if (e.target.closest('a') || e.target.closest('button')) return;
+    if (inputRef.current && document.activeElement !== inputRef.current) {
+      inputRef.current.focus({ preventScroll: true });
     }
   };
 
@@ -57,6 +77,9 @@ export default function Terminal() {
     if (cmd === 'clear') {
       setHistory([]);
       setInputVal('');
+      if (screenRef.current) {
+        screenRef.current.scrollTo({ top: 0, behavior: shouldReduceMotion ? 'auto' : 'smooth' });
+      }
       return;
     }
 
@@ -325,21 +348,28 @@ export default function Terminal() {
           </div>
 
           {/* Terminal Content Screen */}
-          <div className="terminal-screen" role="region" aria-live="polite">
-            {history.map((item, index) => (
-              <div key={index} className="terminal-log-entry">
-                {!item.isSystem && (
-                  <div className="terminal-prompt-line">
-                    <span className="terminal-prompt-user">guest@mohan</span>
-                    <span style={{ color: '#747C76' }}>:</span>
-                    <span className="terminal-prompt-path">~</span>
-                    <span style={{ color: '#747C76' }}>$</span>
-                    <span className="terminal-command-text">{item.command}</span>
-                  </div>
-                )}
-                {item.output}
-              </div>
-            ))}
+          <div ref={screenRef} className="terminal-screen" role="region" aria-live="polite">
+            {history.map((item, index) => {
+              const isLast = index === history.length - 1;
+              return (
+                <div
+                  key={index}
+                  ref={isLast ? lastEntryRef : null}
+                  className="terminal-log-entry"
+                >
+                  {!item.isSystem && (
+                    <div className="terminal-prompt-line">
+                      <span className="terminal-prompt-user">guest@mohan</span>
+                      <span style={{ color: '#747C76' }}>:</span>
+                      <span className="terminal-prompt-path">~</span>
+                      <span style={{ color: '#747C76' }}>$</span>
+                      <span className="terminal-command-text">{item.command}</span>
+                    </div>
+                  )}
+                  {item.output}
+                </div>
+              );
+            })}
 
             {/* Active Prompt Input Line */}
             <div className="terminal-active-line">
@@ -363,8 +393,6 @@ export default function Terminal() {
               />
               <CornerDownLeft size={13} color="#747C76" aria-hidden="true" />
             </div>
-
-            <div ref={screenEndRef} />
           </div>
 
           {/* Window Footer Note */}

@@ -93,15 +93,22 @@ export default function Navbar({ theme, toggleTheme, isDark }) {
             aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
             title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
           >
-            <motion.div
-              key={theme}
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
-              {isDark ? <Sun size={19} /> : <Moon size={19} />}
-            </motion.div>
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={theme}
+                initial={{ scale: 0.75, opacity: 0, rotate: -25 }}
+                animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                exit={{ scale: 0.75, opacity: 0, rotate: 25 }}
+                transition={{ duration: 0.18, ease: 'easeOut' }}
+                className="theme-toggle-icon-wrap"
+              >
+                {isDark ? (
+                  <Sun size={20} strokeWidth={1.85} className="theme-toggle-icon" />
+                ) : (
+                  <Moon size={20} strokeWidth={1.85} className="theme-toggle-icon" />
+                )}
+              </motion.div>
+            </AnimatePresence>
           </button>
 
           {/* Mobile Menu Hamburger */}
@@ -163,9 +170,25 @@ export default function Navbar({ theme, toggleTheme, isDark }) {
                   type="button"
                   className="theme-toggle-btn"
                   onClick={toggleTheme}
-                  aria-label="Toggle theme in mobile menu"
+                  aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+                  title={`Switch to ${isDark ? 'light' : 'dark'} mode`}
                 >
-                  {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                  <AnimatePresence mode="wait" initial={false}>
+                    <motion.div
+                      key={theme}
+                      initial={{ scale: 0.75, opacity: 0, rotate: -25 }}
+                      animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                      exit={{ scale: 0.75, opacity: 0, rotate: 25 }}
+                      transition={{ duration: 0.18, ease: 'easeOut' }}
+                      className="theme-toggle-icon-wrap"
+                    >
+                      {isDark ? (
+                        <Sun size={20} strokeWidth={1.85} className="theme-toggle-icon" />
+                      ) : (
+                        <Moon size={20} strokeWidth={1.85} className="theme-toggle-icon" />
+                      )}
+                    </motion.div>
+                  </AnimatePresence>
                 </button>
               </div>
             </motion.div>

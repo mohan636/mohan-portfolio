@@ -43,11 +43,6 @@ export default function Projects() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.12, ease: 'easeOut' }}
               >
-                {/* Visual Watermark Number */}
-                <span className="project-watermark-num" aria-hidden="true">
-                  0{index + 1}
-                </span>
-
                 {/* Header row */}
                 <div className="project-header-row">
                   <div>
@@ -105,7 +100,7 @@ export default function Projects() {
                       {domainTags[idx] && (
                         <span className="bullet-domain-tag">{domainTags[idx]}</span>
                       )}
-                      <span>{bullet}</span>
+                      <span className="project-bullet-text">{bullet}</span>
                     </li>
                   ))}
                 </ul>
