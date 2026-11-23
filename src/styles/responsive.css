@@ -1,0 +1,234 @@
+/* Responsive styles & Media queries across all viewports */
+
+/* Large desktop (1366px - 1440px+) */
+@media (min-width: 1440px) {
+  :root {
+    --container-max: 1260px;
+  }
+}
+
+/* Small laptops & tablets landscape (<= 1024px) */
+@media (max-width: 1024px) {
+  :root {
+    --header-height: 68px;
+  }
+
+  .container {
+    padding-left: 1.75rem;
+    padding-right: 1.75rem;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+
+  /* Recruiter UX: On mobile/tablet, keep hero introduction at the top so recruiters see name & title first */
+  .hero-visual {
+    order: 1 !important;
+    max-width: 460px;
+    margin: 1rem auto 0;
+    width: 100%;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  }
+}
+
+/* Tablet portrait & below (<= 768px) */
+@media (max-width: 768px) {
+  :root {
+    --header-height: 64px;
+  }
+
+  .container {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  /* Nav responsiveness */
+  .desktop-nav-links {
+    display: none !important;
+  }
+
+  .mobile-menu-btn {
+    display: inline-flex !important;
+  }
+
+  /* Hero adjustments */
+  .hero-title {
+    font-size: 2.85rem !important;
+    line-height: 1.1 !important;
+  }
+
+  .hero-role-title {
+    font-size: 1.35rem !important;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  .hero-cta-group .btn-primary,
+  .hero-cta-group .btn-secondary {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .editorial-card-wrapper {
+    transform: none !important;
+  }
+
+  /* Section headers */
+  .section-title {
+    font-size: 2.25rem !important;
+  }
+
+  .section-wrapper {
+    padding: 3.75rem 0 !important;
+  }
+
+  .terminal-section {
+    padding: 3.75rem 0 !important;
+  }
+}
+
+/* Standard Mobile (<= 480px - covers 430px, 390px) */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.35rem !important;
+  }
+
+  .hero-role-title {
+    font-size: 1.15rem !important;
+  }
+
+  .hero-tech-pills {
+    gap: 0.4rem !important;
+  }
+
+  .tech-pill {
+    font-size: 0.72rem !important;
+    padding: 0.25rem 0.55rem !important;
+  }
+
+  .editorial-stamp {
+    font-size: 0.65rem !important;
+  }
+
+  /* Skills grid single column on small screens */
+  .skills-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Project actions full width */
+  .project-actions {
+    width: 100%;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .btn-link-action {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .project-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Terminal buttons touch-friendly */
+  .terminal-suggestions-bar {
+    padding: 0.65rem 0.85rem !important;
+    gap: 0.45rem !important;
+  }
+
+  .suggestion-btn {
+    font-size: 0.72rem !important;
+    padding: 0.3rem 0.55rem !important;
+  }
+
+  /* Contact info grid on mobile */
+  .contact-info-grid {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+  }
+
+  .contact-info-item {
+    width: 100% !important;
+    justify-content: flex-start !important;
+  }
+
+  /* Back to top position */
+  .back-to-top-btn {
+    bottom: 1.5rem !important;
+    right: 1.25rem !important;
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
+
+/* Small mobile (<= 360px) */
+@media (max-width: 360px) {
+  .container {
+    padding-left: 0.85rem !important;
+    padding-right: 0.85rem !important;
+  }
+
+  .hero-title {
+    font-size: 2rem !important;
+  }
+
+  .hero-role-title {
+    font-size: 1.05rem !important;
+  }
+
+  .about-card,
+  .project-card,
+  .experience-card,
+  .edu-card,
+  .cert-card,
+  .contact-card {
+    padding: 1.15rem 0.95rem !important;
+  }
+
+  .terminal-window-header {
+    padding: 0.55rem 0.75rem !important;
+  }
+
+  .terminal-window-status {
+    display: none !important;
+  }
+
+  .terminal-screen {
+    padding: 0.85rem 0.65rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .contact-headline {
+    font-size: 1.5rem !important;
+  }
+
+  .contact-info-item {
+    padding: 0.6rem 0.75rem !important;
+  }
+
+  .contact-info-link {
+    font-size: 0.8rem !important;
+    word-break: break-all;
+  }
+
+  .contact-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .contact-actions .btn-primary,
+  .contact-actions .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <style>
+    .bg { fill: #F4EFE5; stroke: #252A27; stroke-width: 2.5; }
+    .border-accent { stroke: #9A5738; stroke-width: 2; fill: none; }
+    .monogram { font-family: 'DM Serif Display', Georgia, serif; font-size: 26px; font-weight: 700; fill: #252A27; }
+    .dot { fill: #9A5738; }
+    @media (prefers-color-scheme: dark) {
+      .bg { fill: #181B19; stroke: #E7DFC9; }
+      .border-accent { stroke: #C56F49; }
+      .monogram { fill: #F4EFE5; }
+      .dot { fill: #C56F49; }
+    }
+  </style>
+  <!-- Background Card -->
+  <rect x="4" y="4" width="56" height="56" rx="6" class="bg" />
+  <!-- Inner Offset Hairline -->
+  <rect x="7" y="7" width="50" height="50" rx="4" class="border-accent" />
+  <!-- Monogram Initials -->
+  <text x="32" y="39" text-anchor="middle" class="monogram">KM</text>
+  <!-- Decorative Accent Dot -->
+  <circle cx="47" cy="40" r="2.5" class="dot" />
+</svg>
