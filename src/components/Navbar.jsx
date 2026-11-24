@@ -9,7 +9,7 @@ const SECTION_IDS = NAV_LINKS.map((link) => link.id);
 
 export default function Navbar({ theme, toggleTheme, isDark }) {
   const [isOpen, setIsOpen] = useState(false);
-  const activeSection = useActiveSection(SECTION_IDS, 140);
+  const { activeSection, setActiveSectionManual } = useActiveSection(SECTION_IDS, 140);
 
   // Close mobile menu on resize to desktop
   useEffect(() => {
@@ -45,15 +45,43 @@ export default function Navbar({ theme, toggleTheme, isDark }) {
     };
   }, [isOpen]);
 
-  const handleLinkClick = () => {
+  // Handle instant active indicator update and synchronized smooth scrolling
+  const handleNavClick = (e, link) => {
+    if (!link.href.startsWith('#')) return;
+    e.preventDefault();
+
+    // 1. Immediately highlight clicked navigation item
+    setActiveSectionManual(link.id);
+
+    // 2. Close mobile drawer if open
     setIsOpen(false);
+
+    // 3. Smooth scroll to target section accounting for sticky navbar height
+    const targetEl = document.getElementById(link.id);
+    if (targetEl) {
+      const navHeader = document.querySelector('.navbar-header');
+      const headerHeight = navHeader ? navHeader.offsetHeight : 72;
+      const targetTop = targetEl.getBoundingClientRect().top + window.scrollY - headerHeight;
+
+      window.scrollTo({
+        top: Math.max(0, targetTop),
+        behavior: 'smooth',
+      });
+
+      window.history.pushState(null, '', link.href);
+    }
   };
 
   return (
     <header className="navbar-header">
       <div className="container navbar-container">
         {/* Brand / Monogram */}
-        <a href="#home" className="navbar-brand" aria-label="K. Mohan Reddy Portfolio Home">
+        <a
+          href="#home"
+          className="navbar-brand"
+          aria-label="K. Mohan Reddy Portfolio Home"
+          onClick={(e) => handleNavClick(e, { id: 'home', href: '#home' })}
+        >
           <div className="monogram-badge">
             <span className="monogram-text">{HERO_DATA.initials}</span>
           </div>
@@ -74,6 +102,7 @@ export default function Navbar({ theme, toggleTheme, isDark }) {
                     href={link.href}
                     className={`nav-link ${isActive ? 'active' : ''}`}
                     aria-current={isActive ? 'page' : undefined}
+                    onClick={(e) => handleNavClick(e, link)}
                   >
                     {link.label}
                   </a>
@@ -151,7 +180,7 @@ export default function Navbar({ theme, toggleTheme, isDark }) {
                       <a
                         href={link.href}
                         className={`mobile-nav-link ${isActive ? 'active' : ''}`}
-                        onClick={handleLinkClick}
+                        onClick={(e) => handleNavClick(e, link)}
                         aria-current={isActive ? 'page' : undefined}
                       >
                         <span>{link.label}</span>
